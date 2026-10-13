@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#315c49">
+  <title>Your daily check-in | WELLSPACE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+  <script src="/checkin.js" defer></script>
+</head>
+<body class="checkin-body">
+  <main class="checkin-screen" aria-labelledby="checkin-title">
+    <section class="checkin-welcome">
+      <a class="brand welcome-brand" href="/check-in" aria-label="WELLSPACE check-in">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 25V12m0 8c-6 0-9-4-9-10 6 0 9 3 9 8m0-3c0-6 4-9 10-9 0 6-3 10-10 10"/><path d="M9 25h14"/></svg></span>
+        <span>wellspace</span>
+      </a>
+      <div class="welcome-copy">
+        <span class="welcome-flower" aria-hidden="true">✳</span>
+        <p class="eyebrow">A MOMENT FOR YOURSELF</p>
+        <h1 id="checkin-title">How are you<br><em>feeling today?</em></h1>
+        <p>There’s no right way to feel. Take a breath, check in with yourself, and make a little space for the things that matter to you.</p>
+      </div>
+      <p class="welcome-footnote"><span aria-hidden="true">☼</span> Your wellbeing matters. Always.</p>
+    </section>
+
+    <section class="checkin-form-side" aria-label="Daily wellness entry">
+      <div class="form-heading">
+        <span class="form-step">TODAY’S CHECK-IN</span>
+        <p>Your entries are stored in this app’s local SQLite database.</p>
+      </div>
+      <form class="entry-form" id="checkin-form">
+        <div class="form-date-row">
+          <label for="entry-date">Date</label>
+          <input id="entry-date" name="date" type="date" required>
+        </div>
+
+        <fieldset class="mood-fieldset">
+          <legend>How’s your mood?</legend>
+          <div class="mood-options">
+            <label class="mood-option"><input type="radio" name="mood" value="1" required><span class="mood-choice"><span>😢</span><small>Very low</small></span></label>
+            <label class="mood-option"><input type="radio" name="mood" value="2"><span class="mood-choice"><span>😕</span><small>Low</small></span></label>
+            <label class="mood-option"><input type="radio" name="mood" value="3"><span class="mood-choice"><span>😐</span><small>Okay</small></span></label>
+            <label class="mood-option"><input type="radio" name="mood" value="4"><span class="mood-choice"><span>🙂</span><small>Good</small></span></label>
+            <label class="mood-option"><input type="radio" name="mood" value="5"><span class="mood-choice"><span>😄</span><small>Great</small></span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="habit-fields">
+          <legend>Your day, in little things</legend>
+          <div class="number-field-grid">
+            <div class="number-field sleep-field">
+              <label class="field-title" for="entry-sleep"><i class="input-icon sleep-icon" aria-hidden="true">☾</i> Sleep</label>
+              <div class="sleep-value"><output id="sleep-output" for="entry-sleep">7.5</output><small>hrs</small></div>
+              <input class="sleep-range" id="entry-sleep" name="sleep" type="range" min="0" max="12" step="0.5" value="7.5" aria-describedby="sleep-range-scale" required>
+              <div class="range-scale" id="sleep-range-scale"><span>0</span><span>12 hrs</span></div>
+            </div>
+            <div class="number-field water-field">
+              <label class="field-title" for="entry-water"><i class="input-icon water-icon" aria-hidden="true">◒</i> Water</label>
+              <div class="water-stepper">
+                <button id="water-decrease" type="button" aria-label="Decrease water by one glass">−</button>
+                <input id="entry-water" name="water" type="number" min="0" max="16" step="1" value="0" aria-describedby="water-cup-description" required>
+                <button id="water-increase" type="button" aria-label="Increase water by one glass">+</button>
+              </div>
+              <div class="water-cups" id="water-cups" aria-hidden="true"></div>
+              <span class="sr-only" id="water-cup-description" aria-live="polite">0 glasses selected</span>
+            </div>
+            <label class="number-field" for="entry-activity"><span><i class="input-icon activity-icon" aria-hidden="true">↗</i> Activity</span><span class="number-input-wrap"><input id="entry-activity" name="activity" type="number" min="0" max="1440" step="1" placeholder="0" required><small>mins</small></span></label>
+          </div>
+        </fieldset>
+
+        <label class="note-label" for="entry-note">A note to yourself <span>optional</span></label>
+        <textarea id="entry-note" name="note" maxlength="240" rows="2" placeholder="Anything you’d like to remember about today?"></textarea>
+        <button class="submit-entry" id="submit-entry" type="submit">Save my check-in <span aria-hidden="true">→</span></button>
+        <p class="form-error" id="form-error" role="alert" hidden></p>
+        <p class="privacy-note"><span aria-hidden="true">♧</span> Stored locally on this device. Nothing is sent to a third party.</p>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

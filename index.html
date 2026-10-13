@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#faf9f5">
+  <meta name="description" content="A calm, personal view of your wellness habits and daily check-ins.">
+  <title>Analytics | WELLSPACE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Main navigation">
+      <a class="brand" href="#overview" aria-label="WELLSPACE overview">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 25V12m0 8c-6 0-9-4-9-10 6 0 9 3 9 8m0-3c0-6 4-9 10-9 0 6-3 10-10 10"/><path d="M9 25h14"/></svg></span>
+        <span>wellspace</span>
+      </a>
+
+      <span class="nav-caption">YOUR SPACE</span>
+      <nav class="primary-nav" aria-label="Your space">
+        <a class="nav-link" href="#overview" data-section="Overview"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/></svg></span><span>Overview</span></a>
+        <a class="nav-link" href="#journal" data-section="Daily Journal"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 4.5h12a1 1 0 0 1 1 1v14H7a2 2 0 0 1-2-2v-12a1 1 0 0 1 1-1Z"/><path d="M8 9h7M8 13h7M8 17h4"/><path d="M5 17a2 2 0 0 1 2-2"/></svg></span><span>Daily Journal</span></a>
+        <a class="nav-link is-active" href="#analytics" aria-current="page" data-section="Analytics"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 19.5h16M5 17V5"/><path d="m7.5 14 3.2-3.2 3 1.7 4.8-6"/><circle cx="18.5" cy="6.5" r="1"/></svg></span><span>Analytics</span></a>
+        <a class="nav-link" href="#goals" data-section="My Goals"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1"/></svg></span><span>My Goals</span></a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="reminder-card">
+          <span class="reminder-spark" aria-hidden="true">✳</span>
+          <p>Take a breath.<br><em>You’re right where you need to be.</em></p>
+        </div>
+        <a class="nav-link settings-link" href="#settings" data-section="Settings"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-1.8 1.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5v.1h-2.6v-.1a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1-1.8-1.8.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H6.4v-2.6h.1a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1 1.8-1.8.1.1a1.7 1.7 0 0 0 1.9.3 1.7 1.7 0 0 0 1-1.5v-.1H15v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1 1.8 1.8-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.5 1h.1V14h-.1a1.7 1.7 0 0 0-1.5 1Z"/></svg></span><span>Settings</span></a>
+        <div class="profile-mini">
+          <span class="avatar" aria-hidden="true">W</span>
+          <span class="profile-copy"><strong>Your space</strong><small>Personal journal</small></span>
+          <span class="profile-more" aria-hidden="true">···</span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-area" id="analytics">
+      <header class="topbar">
+        <div class="breadcrumbs" aria-label="Breadcrumb"><span>My Space</span><span class="crumb-divider">/</span><strong>Analytics</strong></div>
+        <div class="topbar-right"><time id="current-date"></time><a class="topbar-action" href="/check-in"><span aria-hidden="true">＋</span> Add check-in</a></div>
+      </header>
+
+      <div class="content-wrap">
+        <section class="wellness-score-banner" aria-labelledby="wellness-score-heading" title="An equal-weight average of mood and progress toward the sleep, water, and activity goals. 70% or above is labeled Good; lower scores are labeled Needs a boost. This is a personal reflection, not a medical assessment.">
+          <div class="score-banner-copy">
+            <div class="score-topline"><p class="score-title" id="wellness-score-heading">Wellness score</p></div>
+            <p class="score-banner-note">A small snapshot of how you’ve been feeling and caring for yourself.</p>
+            <p class="metric-foot" id="wellness-score-foot">Mood + habits, evenly weighted</p>
+          </div>
+          <div class="score-chart-stack"><div class="score-chart-wrap"><canvas id="wellness-score-chart" role="img" aria-label="Doughnut chart showing wellness score percentage"></canvas><div class="score-chart-center" aria-hidden="true"><strong id="average-wellness-score">—</strong><small id="wellness-score-unit"></small></div></div><span class="score-status is-empty" id="wellness-score-status" aria-live="polite">No score</span></div>
+        </section>
+
+        <section class="page-intro" aria-labelledby="page-title">
+          <div>
+            <p class="eyebrow">YOUR WELLNESS JOURNEY</p>
+            <h1 id="page-title">Your progress, <em>your pace.</em></h1>
+            <p class="intro-copy">Small steps add up. Here’s how you’ve been doing.</p>
+          </div>
+          <div class="period-control">
+            <label for="period-select">Showing</label>
+            <select id="period-select" aria-label="Select date range">
+              <option value="7">Last 7 days</option>
+              <option value="14">Last 14 days</option>
+              <option value="30">Last 30 days</option>
+            </select>
+          </div>
+        </section>
+
+        <p class="demo-note"><span aria-hidden="true">ⓘ</span> Your entries are stored in this app’s local SQLite database.</p>
+
+        <section class="summary-grid" aria-label="Wellness averages">
+          <article class="summary-card mood-summary">
+            <div class="summary-top"><span class="summary-icon mood-icon" id="average-mood-icon" aria-hidden="true">—</span><span class="metric-trend" id="mood-caption">Daily average</span></div>
+            <p class="metric-label">Average mood</p><p class="metric-value"><span id="average-mood">—</span><small> / 5</small></p>
+            <p class="metric-foot" id="mood-foot">Across your check-ins</p>
+          </article>
+          <article class="summary-card sleep-summary">
+            <div class="summary-top"><span class="summary-icon sleep-icon" aria-hidden="true">☾</span><span class="metric-trend">Rest & reset</span></div>
+            <p class="metric-label">Sleep duration</p><p class="metric-value"><span id="average-sleep">—</span><small> hrs</small></p>
+            <p class="metric-foot">Average each night</p>
+          </article>
+          <article class="summary-card water-summary">
+            <div class="summary-top"><span class="summary-icon water-icon" aria-hidden="true">◒</span><span class="metric-trend">Little sips count</span></div>
+            <p class="metric-label">Water intake</p><p class="metric-value"><span id="average-water">—</span><small> glasses</small></p>
+            <p class="metric-foot">Average each day</p>
+          </article>
+          <article class="summary-card activity-summary">
+            <div class="summary-top"><span class="summary-icon activity-icon" aria-hidden="true">↗</span><span class="metric-trend">Move your way</span></div>
+            <p class="metric-label">Active minutes</p><p class="metric-value"><span id="average-activity">—</span><small> min</small></p>
+            <p class="metric-foot">Average each day</p>
+          </article>
+        </section>
+
+        <section class="charts-grid" aria-label="Mood analytics">
+          <article class="panel chart-panel trend-panel">
+            <div class="panel-heading"><div><p class="panel-kicker">A LITTLE CONTEXT</p><h2>Mood over time</h2></div><span class="chart-key" aria-label="Mood colors from very low to great"><i class="mood-dot mood-very-low" title="Very low"></i><i class="mood-dot mood-low" title="Low"></i><i class="mood-dot mood-okay" title="Okay"></i><i class="mood-dot mood-good" title="Good"></i><i class="mood-dot mood-great" title="Great"></i></span></div>
+            <div class="trend-chart-wrap"><canvas id="mood-trend-chart" role="img" aria-label="Line chart showing mood scores over time from one to five"></canvas></div>
+            <p class="chart-empty" id="trend-empty" hidden>No check-ins in this period yet.</p>
+          </article>
+          <article class="panel chart-panel balance-panel">
+            <div class="panel-heading"><div><p class="panel-kicker">THE BIG PICTURE</p><h2>Mood balance</h2></div></div>
+            <div class="balance-content">
+              <div class="doughnut-wrap"><canvas id="mood-balance-chart" role="img" aria-label="Doughnut chart showing the distribution of mood check-ins"></canvas><div class="doughnut-center" aria-hidden="true"><strong id="checkin-total">0</strong><span>check-ins</span></div></div>
+              <ul class="mood-legend" id="mood-legend" aria-label="Mood category counts"></ul>
+            </div>
+            <p class="chart-empty balance-empty" id="balance-empty" hidden>No moods to show yet.</p>
+          </article>
+        </section>
+
+        <section class="lower-grid" aria-label="Habits and recent entries">
+          <article class="panel habits-panel">
+            <div class="panel-heading"><div><p class="panel-kicker">GENTLE RHYTHMS</p><h2>Daily habits</h2></div><span class="heading-aside">Your daily average</span></div>
+            <div class="habit-list">
+              <div class="habit-row" data-habit="sleep"><span class="habit-icon habit-moon" aria-hidden="true">☾</span><div class="habit-main"><div class="habit-heading"><strong>Sleep</strong><span><b id="habit-sleep-value">—</b> <small>/ 8 hrs</small></span></div><div class="progress-track" role="progressbar" aria-label="Sleep goal progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="habit-sleep-bar"></span></div></div></div>
+              <div class="habit-row" data-habit="water"><span class="habit-icon habit-water" aria-hidden="true">◒</span><div class="habit-main"><div class="habit-heading"><strong>Water intake</strong><span><b id="habit-water-value">—</b> <small>/ 8 glasses</small></span></div><div class="progress-track" role="progressbar" aria-label="Water intake goal progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="habit-water-bar"></span></div></div></div>
+              <div class="habit-row" data-habit="activity"><span class="habit-icon habit-move" aria-hidden="true">↗</span><div class="habit-main"><div class="habit-heading"><strong>Physical activity</strong><span><b id="habit-activity-value">—</b> <small>/ 30 min</small></span></div><div class="progress-track" role="progressbar" aria-label="Physical activity goal progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="habit-activity-bar"></span></div></div></div>
+            </div>
+            <p class="empty-inline" id="habits-empty" hidden>Habits will appear here after your first check-in.</p>
+          </article>
+
+          <article class="panel checkins-panel">
+            <div class="panel-heading"><div><p class="panel-kicker">NOTES TO SELF</p><h2>Recent check-ins</h2></div><button class="text-action" id="view-all" type="button">View all <span aria-hidden="true">→</span></button></div>
+            <div class="checkin-list" id="checkin-list" aria-live="polite"></div>
+            <p class="empty-inline" id="checkins-empty" hidden>No check-ins in this period yet.</p>
+          </article>
+        </section>
+
+        <footer class="page-footer"><span>WELLSPACE <i aria-hidden="true">·</i></span><span>Your wellbeing matters. Always.</span></footer>
+      </div>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
